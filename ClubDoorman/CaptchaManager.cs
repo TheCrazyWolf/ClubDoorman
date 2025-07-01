@@ -1,3 +1,4 @@
+/*
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using Telegram.Bot;
@@ -267,3 +268,4 @@ internal class CaptchaManager
 
     private static string UserToKey(long chatId, User user) => $"{chatId}_{user.Id}";
 }
+*/

@@ -35,7 +35,7 @@ public class Program
                     services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(
                         provider.GetRequiredService<Config>().BotApi
                     ));
-                    services.AddSingleton<CaptchaManager>();
+                    //services.AddSingleton<CaptchaManager>();
                     services.AddSingleton<MessageProcessor>();
                     services.AddSingleton<StatisticsReporter>();
                     services.AddSingleton<SpamHamClassifier>();

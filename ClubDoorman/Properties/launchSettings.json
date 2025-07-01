@@ -3,7 +3,9 @@
     "ClubDoorman": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOORMAN_BOT_API" : "7882264507:AAHg7VqNZzsY65qLlQEQkFeAbBqFQ6X-4-I",
+        "DOORMAN_ADMIN_CHAT" : -4841377362
       },
       "dotnetRunMessages": true
     },

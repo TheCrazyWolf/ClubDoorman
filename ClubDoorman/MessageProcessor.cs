@@ -16,7 +16,7 @@ internal class MessageProcessor
     private readonly UserManager _userManager;
     private readonly BadMessageManager _badMessageManager;
     private readonly AiChecks _aiChecks;
-    private readonly CaptchaManager _captchaManager;
+    // private readonly CaptchaManager _captchaManager;
     private readonly ConcurrentDictionary<long, int> _goodUserMessages = new();
     private readonly StatisticsReporter _statistics;
     private readonly Config _config;
@@ -32,7 +32,7 @@ internal class MessageProcessor
         UserManager userManager,
         BadMessageManager badMessageManager,
         AiChecks aiChecks,
-        CaptchaManager captchaManager,
+       //  CaptchaManager captchaManager,
         StatisticsReporter statistics,
         Config config,
         ReactionHandler reactionHandler,
@@ -45,7 +45,7 @@ internal class MessageProcessor
         _userManager = userManager;
         _badMessageManager = badMessageManager;
         _aiChecks = aiChecks;
-        _captchaManager = captchaManager;
+       //  _captchaManager = captchaManager;
         _statistics = statistics;
         _config = config;
         _reactionHandler = reactionHandler;
@@ -71,8 +71,8 @@ internal class MessageProcessor
 
             if (msg == null || msg.Chat.Id == _config.AdminChatId || _config.MultiAdminChatMap.Values.Contains(msg.Chat.Id))
                 await _adminCommandHandler.HandleAdminCallback(cb.Data, cb);
-            else
-                await _captchaManager.HandleCaptchaCallback(update);
+            //  else
+            //     await _captchaManager.HandleCaptchaCallback(update);
             return;
         }
         if (update.ChatMember != null)
@@ -101,7 +101,7 @@ internal class MessageProcessor
         if (message.NewChatMembers != null && chat.Id != _config.AdminChatId && !_config.MultiAdminChatMap.Values.Contains(chat.Id))
         {
             foreach (var newUser in message.NewChatMembers.Where(x => !x.IsBot))
-                await _captchaManager.IntroFlow(message, newUser);
+               // await _captchaManager.IntroFlow(message, newUser);
             return;
         }
         if (chat.Id == _config.AdminChatId || _config.MultiAdminChatMap.Values.Contains(chat.Id))
@@ -180,11 +180,11 @@ internal class MessageProcessor
                 new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddHours(1) }
             );
 
-        if (_captchaManager.IsCaptchaNeeded(chat.Id, user))
+        /*if (_captchaManager.IsCaptchaNeeded(chat.Id, user))
         {
             await _bot.DeleteMessage(chat.Id, message.MessageId, stoppingToken);
             return;
-        }
+        }*/
 
         if (_userManager.Approved(user.Id))
             return;
@@ -511,7 +511,7 @@ internal class MessageProcessor
                         newChatMember.User.Username,
                         newChatMember.User.Id
                     );
-                    await _captchaManager.IntroFlow(null, newChatMember.User, chatMember.Chat);
+                    //await _captchaManager.IntroFlow(null, newChatMember.User, chatMember.Chat);
                 }
                 break;
             }

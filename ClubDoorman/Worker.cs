@@ -5,7 +5,7 @@ namespace ClubDoorman;
 
 internal sealed class Worker(
     ITelegramBotClient botClient,
-    CaptchaManager captchaManager,
+    // CaptchaManager captchaManager,
     MessageProcessor messageProcessor,
     StatisticsReporter statisticsReporter,
     ILogger<Worker> logger
@@ -13,7 +13,7 @@ internal sealed class Worker(
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _ = captchaManager.CaptchaLoop(stoppingToken);
+        // _ = captchaManager.CaptchaLoop(stoppingToken);
         _ = statisticsReporter.MainStatisticsLoop(stoppingToken);
         const string offsetPath = "data/offset.txt";
         var offset = 0;
