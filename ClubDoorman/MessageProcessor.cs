@@ -92,7 +92,7 @@ internal class MessageProcessor
         {
             await _bot.SendMessage(
                 chat,
-                "Сорян, я не отвечаю в личке, если вы хотели написать создателю - в описании",
+                "Анти-спам фильтр на ИИ. Интерактив в личке не доступен. Есть вопросы по работе бота или проблемы с отправокой сообщений? @kulagin_alex",
                 replyParameters: message,
                 cancellationToken: stoppingToken
             );
